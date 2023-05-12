@@ -14,38 +14,62 @@ public class MyAPI extends MyAPIData
     public void myPrint()
     {
         RestAssured.baseURI="https://rahulshettyacademy.com";
+        
+        //Add place API
         String postBody = given().queryParam("key", "qaclick123").header("Content-Type","application/json")
         .body(getBasicAPIData())
         .when().post("/maps/api/place/add/json")
         .then().assertThat().statusCode(200).body("scope",equalTo("APP")).header("Server","Apache/2.4.41 (Ubuntu)")
         .extract().body().asString();
-        System.out.println(postBody);
+        //System.out.println(postBody);
 
+        //Creating JsonPath object to hold Json Data
         JsonPath keys = new JsonPath(postBody);
-        String status = keys.getString("status");
-        String place_id = keys.getString("place_id");
-        String scope = keys.getString("scope");
-        System.out.println(status+" "+ place_id+" "+scope);
+		/*
+		 * String status = keys.getString("status");
+		 * String place_id = keys.getString("place_id"); //place_id used as a variable
+		 * String scope = keys.getString("scope");
+		 * System.out.println(status+" "+ place_id+" "+scope);
+		 */
         
-        //JsonPath library has .getMap() method that holds key-value data in a map object
-        //keys.getMap loads Json response to variable a. It returns a Map
-        //Map a is loaded into entrySet(). Which is iterated
+        //Finding size of the JsonPath object
+        int count = keys.getInt("size()");
+        System.out.println("Count of the JasonPath object: " + count);
+        
+		/*
+		 * //Should not Iterate JsonPath object using For-Loop. Its not an Array
+		 * //ForLoop gives ith position of an Array. But JsonPath Object is in a MAP structure
+		 * //If used will get all NULL values
+		 * JsonPath jsonPath = new JsonPath(postBody);
+		 * int c = jsonPath.getInt("size()");
+		 * for (int i = 0; i < c; i++)
+		 * { 
+		 * 	String nstatus = jsonPath.getString("[" + i + "].status");
+		 * 	String nplace_id = jsonPath.getString("[" + i + "].place_id");
+		 * 	String nscope = jsonPath.getString("[" + i + "].scope");
+		 * 	String nreference = jsonPath.getString("[" + i + "].reference");
+		 * 	String nid = jsonPath.getString("[" + i + "].id");
+		 * 	System.out.println(nstatus + " " + nplace_id + " " + nscope + " " + nreference + " " + nid);
+		 * }
+		 */
+
+        //Iterate JsonPath object using ForEach-Loop
+        //JsonPath holds all data in key-value pairing in String format. Add it to a MAP structure
+        //JsonPath library has .getMap() method that holds key-value paired data. That's a Map structure
+        //JsonObject.getMap loads Json response to variable a. It returns a Map reference
+        //Map reference is loaded into entrySet(). Which is iterated to access data
+        //entrySet() is a method in the Map interface in Java that returns a Set of all the key-value pairs
+        //The entrySet() method is often used to iterate over the key-value pairs of a map using a for-each loop.
         Map<Object, Object> a = keys.getMap("");
         for (Map.Entry<Object, Object> entry : a.entrySet())
         {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
-        
-        //entrySet() is a method in the Map interface in Java that returns a Set of all the key-value pairs in the map.
-        //The entrySet() method is often used to iterate over the key-value pairs of a map using a for-each loop.
-        Map<String, Integer> map = new HashMap<>();
-        map.put("apple", 2);
-        map.put("orange", 3);
-        map.put("banana", 1);
 
-        for (Map.Entry<String, Integer> entry : map.entrySet())
-        {
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-        }
+
+
+     
+        //Update place API
+        
     }
 }
