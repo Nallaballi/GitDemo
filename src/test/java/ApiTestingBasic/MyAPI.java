@@ -1,5 +1,6 @@
 package ApiTestingBasic;
 
+import org.junit.Assert;
 import org.junit.Test;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -7,6 +8,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class MyAPI extends MyAPIData
 {
@@ -15,19 +17,20 @@ public class MyAPI extends MyAPIData
     {
         RestAssured.baseURI="https://rahulshettyacademy.com";
         
-        //Add place API
-        String postBody = given().queryParam("key", "qaclick123").header("Content-Type","application/json")
+        //Add place API----------------------------------------------
+        String postResponse = given().queryParam("key", "qaclick123").header("Content-Type","application/json")
         .body(getBasicAPIData())
         .when().post("/maps/api/place/add/json")
         .then().assertThat().statusCode(200).body("scope",equalTo("APP")).header("Server","Apache/2.4.41 (Ubuntu)")
         .extract().body().asString();
-        //System.out.println(postBody);
+        System.out.println(postResponse);
 
         //Creating JsonPath object to hold Json Data
-        JsonPath keys = new JsonPath(postBody);
-		/*
+        JsonPath keys = new JsonPath(postResponse );
+        String place_id = keys.getString("place_id"); //place_id used as a variable
+		
+        /*
 		 * String status = keys.getString("status");
-		 * String place_id = keys.getString("place_id"); //place_id used as a variable
 		 * String scope = keys.getString("scope");
 		 * System.out.println(status+" "+ place_id+" "+scope);
 		 */
@@ -66,10 +69,34 @@ public class MyAPI extends MyAPIData
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
 
-
-
-     
-        //Update place API
+        //Update place API----------------------------------------------------------
+        String newAddress = "70 Summer walk, USA";
+        given().queryParam("key", "qaclick123").header("Content-Type","application/json")
+        .body("{\"place_id\":\""+place_id+"\",\r\n"
+        		+ "\"address\":\""+newAddress+"\",\r\n"
+        		+ "\"key\":\"qaclick123\"\r\n"
+        		+ "}\r\n"
+        		+ "")
+        .when().put("/maps/api/place/update/json")
+        .then().assertThat().statusCode(200).body("msg", equalTo("Address successfully updated"));
+ 
+      //Get place API----------------------------------------------------------
+        String getResponse = given().queryParam("key", "qaclick123").queryParam("place_id",place_id)
+        .when().get("/maps/api/place/get/json")
+        .then().assertThat().statusCode(200).extract().body().asString();
+        System.out.println(getResponse);
         
+        JsonPath jp = new JsonPath(getResponse);
+        String newaddress = jp.getString("address");
+        System.out.println(newaddress);
+        Assert.assertEquals(newAddress, newaddress);
+		Assert.assertTrue(newAddress.equals(newaddress));
+		
+      //Iterate JsonPath object using ForEach-Loop to print Get Response
+		Map<Object, Object> res = jp.getMap("");
+		for(Entry<Object, Object> r:res.entrySet())
+		{
+			System.out.println(r.getKey() + ":" + r.getValue());
+		}
     }
 }
