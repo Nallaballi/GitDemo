@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 public class MyAPI extends MyAPIData
 {
     @Test
-    public void myPrint()
+    public void basicAPI()
     {
         RestAssured.baseURI="https://rahulshettyacademy.com";
         
@@ -80,7 +80,7 @@ public class MyAPI extends MyAPIData
         .when().put("/maps/api/place/update/json")
         .then().assertThat().statusCode(200).body("msg", equalTo("Address successfully updated"));
  
-      //Get place API----------------------------------------------------------
+        //Get place API----------------------------------------------------------
         String getResponse = given().queryParam("key", "qaclick123").queryParam("place_id",place_id)
         .when().get("/maps/api/place/get/json")
         .then().assertThat().statusCode(200).extract().body().asString();
