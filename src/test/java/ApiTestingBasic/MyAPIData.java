@@ -52,13 +52,25 @@ public class MyAPIData
 		return data;
 	}
 	
-	public String dataLibrary()
+	public static String dataLibrary(String isbn,String aisle)
 	{
 		String data = "{\r\n"
 				+ "\"name\":\"Learn Appium Automation with Java\",\r\n"
-				+ "\"isbn\":\"bcd\",\r\n"
-				+ "\"aisle\":\"227\",\r\n"
-				+ "\"author\":\"John foe\"\r\n"
+				+ "\"isbn\":\""+isbn+"\",\r\n"
+				+ "\"aisle\":\""+aisle+"\",\r\n"
+				+ "\"author\":\"James Jones\"\r\n"
+				+ "}\r\n"
+				+ "";
+		return data;
+	}
+	
+	public static String dataProvider(String isbn,String aisle)
+	{
+		String data = "{\r\n"
+				+ "\"name\":\"Learn Appium Automation with Java\",\r\n"
+				+ "\"isbn\":\""+isbn+"\",\r\n"
+				+ "\"aisle\":\""+aisle+"\",\r\n"
+				+ "\"author\":\"James Jones\"\r\n"
 				+ "}\r\n"
 				+ "";
 		return data;

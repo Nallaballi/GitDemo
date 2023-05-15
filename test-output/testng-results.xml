@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-12T23:51:34 CDT" name="Default suite" finished-at="2023-05-12T23:51:36 CDT" duration-ms="1827">
+  <suite started-at="2023-05-13T00:33:32 CDT" name="Default suite" finished-at="2023-05-13T00:33:36 CDT" duration-ms="3812">
     <groups>
     </groups>
-    <test started-at="2023-05-12T23:51:34 CDT" name="Default test" finished-at="2023-05-12T23:51:36 CDT" duration-ms="1827">
-      <class name="ApiTestingBasic.JsonTraverse_CoursesAPI">
-        <test-method signature="myCourses()[pri:0, instance:ApiTestingBasic.JsonTraverse_CoursesAPI@51dcb805]" started-at="2023-05-12T23:51:34 CDT" name="myCourses" finished-at="2023-05-12T23:51:36 CDT" duration-ms="1775" status="PASS">
+    <test started-at="2023-05-13T00:33:32 CDT" name="Default test" finished-at="2023-05-13T00:33:36 CDT" duration-ms="3812">
+      <class name="ApiTestingBasic.LibraryAPI">
+        <test-method signature="myLibraryAPI()[pri:0, instance:ApiTestingBasic.LibraryAPI@272ed83b]" started-at="2023-05-13T00:33:32 CDT" name="myLibraryAPI" finished-at="2023-05-13T00:33:36 CDT" duration-ms="3760" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- myCourses -->
-      </class> <!-- ApiTestingBasic.JsonTraverse_CoursesAPI -->
+        </test-method> <!-- myLibraryAPI -->
+      </class> <!-- ApiTestingBasic.LibraryAPI -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

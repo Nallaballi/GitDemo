@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="ApiTestingBasic.JsonTraverse_CoursesAPI">
+      <class name="ApiTestingBasic.LibraryAPI">
         <methods>
-          <include name="qsCourses"/>
+          <include name="myLibraryAPI"/>
         </methods>
-      </class> <!-- ApiTestingBasic.JsonTraverse_CoursesAPI -->
+      </class> <!-- ApiTestingBasic.LibraryAPI -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
