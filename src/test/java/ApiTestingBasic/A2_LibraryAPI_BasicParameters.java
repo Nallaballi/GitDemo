@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 
-public class LibraryAPI_BasicParameters
+public class A2_LibraryAPI_BasicParameters
 {
 	@Test
 	public void myLibraryAPI()
@@ -15,7 +15,7 @@ public class LibraryAPI_BasicParameters
 		RestAssured.baseURI="https://rahulshettyacademy.com";
 				
 		String res = given().header("Content-Type","application/json")
-		.body(MyAPIData.dataLibrary("opqwth","22345")) 
+		.body(A0_MyAPIData.dataLibrary("opqwth","22345")) 
 		.when().post("Library/Addbook.php")
 		.then().assertThat().statusCode(200).body("Msg", equalTo("successfully added"))
 		.extract().body().asString();

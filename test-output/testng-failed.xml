@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="ApiTestingBasic.LibraryAPI">
+      <class name="ApiTestingBasic.A6_GoogleAddPlaceAPI">
         <methods>
-          <include name="myLibraryAPI"/>
+          <include name="GoogleAddPlaceAPI"/>
         </methods>
-      </class> <!-- ApiTestingBasic.LibraryAPI -->
+      </class> <!-- ApiTestingBasic.A6_GoogleAddPlaceAPI -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
