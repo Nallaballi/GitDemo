@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import io.restassured.path.json.JsonPath;
 
-public class JsonTraverse_CoursesAPI extends MyAPIData
+public class A3_JsonTraverse_CoursesAPI extends A0_MyAPIData
 {
 	@Test
 	public void myCourses()

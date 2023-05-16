@@ -6,11 +6,10 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class MyAPI extends MyAPIData
+public class A1_MyAPI extends A0_MyAPIData
 {
     @Test
     public void basicAPI()

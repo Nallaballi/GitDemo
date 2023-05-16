@@ -1,8 +1,15 @@
 package ApiTestingBasic;
 
-public class MyAPIData
-{
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
+public class A0_MyAPIData
+{
+	A7_POJOGoogleInfo locationData = new A7_POJOGoogleInfo();
+	
 	public String getBasicAPIData()
 	{
 		String data = "{\r\n"
@@ -64,15 +71,29 @@ public class MyAPIData
 		return data;
 	}
 	
-	public static String dataProvider(String isbn,String aisle)
+	public String GenerateStringFromResource(String path) throws IOException
 	{
-		String data = "{\r\n"
-				+ "\"name\":\"Learn Appium Automation with Java\",\r\n"
-				+ "\"isbn\":\""+isbn+"\",\r\n"
-				+ "\"aisle\":\""+aisle+"\",\r\n"
-				+ "\"author\":\"James Jones\"\r\n"
-				+ "}\r\n"
-				+ "";
-		return data;
+		return new String(Files.readAllBytes(Paths.get(path)));
+	}
+	
+	public A7_POJOGoogleInfo pojoData()
+	{
+		locationData.setAccuracy(50);
+		locationData.setName("Frontline house");
+		locationData.setPhone_number("(+91) 983 893 3937");
+		locationData.setAddress("29, side layout, cohen 09");
+		locationData.setWebsite("https://rahulshettyacademy.com");
+		locationData.setLanguage("French-IN");
+		
+		List<String> types =new ArrayList<String>();
+		types.add("shoe park");
+		types.add("shop"); locationData.setTypes(types);
+		
+		A8_POJOLocationInfo location = new A8_POJOLocationInfo();
+		location.setLat(-38.383494);
+		location.setLng(33.427362);
+		locationData.setLocation(location);
+		
+		return locationData; //Must return Object
 	}
 }
